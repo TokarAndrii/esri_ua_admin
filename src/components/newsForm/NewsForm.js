@@ -51,6 +51,7 @@ class NewsForm extends Component {
       content === '' ||
       titleImage === null
     ) {
+      // eslint-disable-next-line
       alert('input all fields');
       return null;
     }
@@ -93,7 +94,7 @@ class NewsForm extends Component {
           <textarea
             className={styles.input}
             cols="150"
-            rows="3"
+            rows="10"
             onChange={this.handleChange}
             type="text"
             name="preview"
@@ -107,7 +108,7 @@ class NewsForm extends Component {
             type="text"
             name="content"
             cols="150"
-            rows="10"
+            rows="40"
           />
         </label>
         <label className={styles.row}>

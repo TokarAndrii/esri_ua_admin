@@ -9,9 +9,23 @@
   padding-left: 10px;
   padding-right: 10px;
   width: 100px;
+  background-color: #fff;
 }
 
-.button:hover {
+.editButton {
+  text-decoration: none;
+  border: 1px solid #dfdfdf;
+  text-align: center;
+  margin-left: 8px;
+  padding: 4px;
+  padding-left: 22px;
+  padding-right: 22px;
+  width: 100px;
+  background-color: #fff;
+}
+
+.button:hover,
+.editButton:hover {
   background-color: rgb(70, 240, 240);
   color: black;
 }

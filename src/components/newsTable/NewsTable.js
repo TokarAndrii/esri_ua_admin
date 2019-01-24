@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './NewsTable.module.css';
 
-const NewsTable = ({ tableClassName, newsList, onEdit, onDelete }) => (
+const NewsTable = ({ tableClassName, newsList, onDelete }) => (
   <table className={tableClassName}>
     <thead>
       <tr>
@@ -43,10 +44,9 @@ const NewsTable = ({ tableClassName, newsList, onEdit, onDelete }) => (
                 ))}
             </td>
             <td>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={() => onEdit(newsItem.id)}
+              <Link
+                to={`/edit-news/${newsItem.id}`}
+                className={styles.editButton}
               >
                 <img
                   src="./edit.png"
@@ -54,7 +54,12 @@ const NewsTable = ({ tableClassName, newsList, onEdit, onDelete }) => (
                   className={styles.buttonIcon}
                 />
                 Edit
-              </button>
+              </Link>
+              {/* <button
+                className={styles.button}
+                type="button"
+                onClick={() => onEdit(newsItem.id)}
+              /> */}
               <button
                 className={styles.button}
                 type="button"

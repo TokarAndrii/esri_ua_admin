@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
 import { Link, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import AddNewsPage from '../../pages/addNewsPage/AddNewsPage';
 import HomePage from '../../pages/home/HomePage';
+import EditNewsPage from '../../pages/editNews/EditNewsPage';
+
 import styles from './App.module.css';
 
 class App extends Component {
   componentDidMount() {}
 
   render() {
-    const { isLoading, location } = this.props;
+    const { location } = this.props;
     return (
       <div className={styles.app}>
         <header className={styles.appHeader}>
@@ -41,10 +43,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/add-news" component={AddNewsPage} />
+          <Route path="/edit-news/:id" component={EditNewsPage} />
         </Switch>
-        {isLoading && (
-          <Loader type="Watch" color="#00BFFF" height="40" width="40" />
-        )}
       </div>
     );
   }
