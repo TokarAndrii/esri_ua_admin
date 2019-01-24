@@ -1,0 +1,40 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.appHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 32px;
+  background-color: #2196f3;
+  color: white;
+  padding-bottom: 16px;
+}
+
+.mainPageLinksHolder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.addNewsPageLinkHolder {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  padding-right: 64px;
+  color: white;
+}
+
+.addNewsPageLinkIcon {
+  margin: 8px;
+}
