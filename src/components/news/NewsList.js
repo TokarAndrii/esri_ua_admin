@@ -28,16 +28,18 @@ class NewsList extends Component {
   render() {
     const { newsList, onDeleteNewsItem, isLoading } = this.props;
     return (
-      <div className={styles.list}>
+      <>
         {isLoading && (
           <Loader type="Watch" color="#00BFFF" height="40" width="40" />
         )}
-        <NewsTable
-          newsList={newsList}
-          onDelete={onDeleteNewsItem}
-          tableClassName={styles.table}
-        />
-      </div>
+        <div className={styles.list}>
+          <NewsTable
+            newsList={newsList}
+            onDelete={onDeleteNewsItem}
+            tableClassName={styles.table}
+          />
+        </div>
+      </>
     );
   }
 }

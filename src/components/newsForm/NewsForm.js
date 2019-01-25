@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import newsOperations from '../../redux/newsOperations';
 import styles from './NewsForm.module.css';
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
   content: '',
   titleImage: null,
   imagesArray: [],
+  isLoading: false,
 };
 
 class NewsForm extends Component {
@@ -78,8 +80,12 @@ class NewsForm extends Component {
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <>
+        {isLoading && (
+          <Loader type="Watch" color="#00BFFF" height="40" width="40" />
+        )}
         <label className={styles.row}>
           <span className={styles.spanLabel}>Title</span>
           <input
@@ -144,11 +150,15 @@ class NewsForm extends Component {
     );
   }
 }
+const mstp = state => ({
+  isLoading: state.isLoading,
+});
+
 const mdtp = {
   addNote: newsOperations.addNewsAndImages,
 };
 
 export default connect(
-  null,
+  mstp,
   mdtp,
 )(NewsForm);
