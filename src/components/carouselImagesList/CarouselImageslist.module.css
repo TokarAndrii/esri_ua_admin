@@ -1,0 +1,40 @@
+.button {
+  text-align: center;
+  margin-left: 8px;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100px;
+  background-color: #fff;
+}
+
+.editButton {
+  text-decoration: none;
+  border: 1px solid #dfdfdf;
+  text-align: center;
+  margin-left: 8px;
+  padding: 4px;
+  padding-left: 22px;
+  padding-right: 22px;
+  width: 100px;
+  background-color: #fff;
+}
+
+.buttonIcon {
+  margin-right: 8px;
+}
+
+.imageLink {
+  margin-left: 4px;
+}
+
+.button:hover,
+.editButton:hover {
+  background-color: rgb(70, 240, 240);
+  color: black;
+}
+
+.image {
+  width: 500px;
+  margin: 4px;
+}

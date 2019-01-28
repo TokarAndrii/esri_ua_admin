@@ -25,8 +25,32 @@
   flex-direction: row;
 }
 
+.headerMenuHolder {
+  padding-right: 16px;
+  padding-left: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.headerMenu {
+  width: 300px;
+}
+
+.carouselMenuPageLinkHolder {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  color: white;
+}
+
 .addNewsPageLinkHolder {
-  width: 100vw;
+  width: 300px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -1,0 +1,40 @@
+.form {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 25vw;
+  height: 21vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  padding: 32px;
+  font-size: 1.2rem;
+  margin-top: 5%;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.input {
+  height: 25px;
+  width: 70%;
+  padding: 4px;
+  letter-spacing: 0.5px;
+}
+
+.submitBtn {
+  width: 15vw;
+  margin-left: 25%;
+  height: 40px;
+  font-weight: bold;
+}
+
+.submitBtn:hover {
+  background-color: rgb(70, 240, 240);
+  color: black;
+}

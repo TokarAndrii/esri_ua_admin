@@ -1,0 +1,15 @@
+.holder {
+  width: 100%;
+  height: 880px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: url(./login-bg2.jpg) no-repeat;
+  background-size: cover;
+  margin-top: -32px;
+}
+
+.header {
+  color: aliceblue;
+}

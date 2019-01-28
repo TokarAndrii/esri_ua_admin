@@ -1,9 +1,7 @@
 import React, { Component, createRef } from 'react';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
-import { Link } from 'react-router-dom';
 
-import homeIcon from './home2.png';
 import deleteIcon from './delete.png';
 import styles from './EditnewsPage.module.css';
 
@@ -182,14 +180,6 @@ class EditNewsPage extends Component {
     } = this.state;
     return (
       <div className={styles.holder}>
-        <Link to="/" className={styles.addNewsPageLinkHolder}>
-          <img
-            src={homeIcon}
-            alt="add_news_icon"
-            className={styles.addNewsPageLinkIcon}
-          />
-          <span className={styles.addNewstext}> Home</span>
-        </Link>
         <h2 className={styles.header}>Edit News Page</h2>
 
         <div className={styles.tabsTitleHolder}>

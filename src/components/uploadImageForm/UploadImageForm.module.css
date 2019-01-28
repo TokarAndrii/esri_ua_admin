@@ -1,0 +1,57 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.input {
+  display: inline-block;
+  margin-left: 200px;
+  width: 1000px;
+  min-height: 32px;
+  padding: 8px;
+  margin-top: 0;
+}
+
+.spanLabel {
+  width: 50px;
+  display: inline-block;
+}
+.row {
+  display: inline-block;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.submitBtn {
+  padding: 8px;
+  width: 200px;
+  margin-bottom: 32px;
+}
+
+.submitBtn:hover {
+  background-color: rgb(70, 240, 240);
+  color: black;
+}
+
+.homeLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 32px;
+  margin-left: 91vw;
+}
+
+.homeImg {
+  margin-right: 8px;
+}
+
+.buttonIcon {
+  margin-right: 8px;
+}
