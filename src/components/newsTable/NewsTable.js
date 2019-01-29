@@ -32,9 +32,6 @@ const NewsTable = ({ tableClassName, newsList, onDelete }) => (
             <td>
               {newsItem.newsImages &&
                 newsItem.newsImages.map(curr => (
-                  // <span className={styles.imageLink} key={curr.id}>
-                  //   image{curr.id}
-                  // </span>
                   <img
                     key={curr.id}
                     className={styles.image}

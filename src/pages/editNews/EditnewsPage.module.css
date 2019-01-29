@@ -147,3 +147,9 @@
 .addNewstext {
   color: white;
 }
+
+.error {
+  color: red;
+  padding: 32px;
+  font-weight: bold;
+}
