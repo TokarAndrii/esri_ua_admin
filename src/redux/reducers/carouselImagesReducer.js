@@ -1,4 +1,4 @@
-import carouselActionsTypes from './carouselActionsTypes';
+import carouselActionsTypes from '../types/carouselActionsTypes';
 
 const carouselImagesReducer = (state = [], { type, payload }) => {
   switch (type) {

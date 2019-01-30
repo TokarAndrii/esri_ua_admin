@@ -1,10 +1,16 @@
 import React, { Component, createRef } from 'react';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
+import { connect } from 'react-redux';
 
 import deleteIcon from './delete.png';
 import styles from './EditnewsPage.module.css';
 import send from './send.png';
+import apiConfig from '../../config';
+
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 const INITIAL_STATE = {
   title: '',
@@ -27,14 +33,20 @@ class EditNewsPage extends Component {
   fileRef = createRef();
 
   componentDidMount() {
-    const { match } = this.props;
+    const { match, authToken } = this.props;
 
     const { id } = match.params;
 
     this.setState({ isLoading: true });
 
+    setAuthHeader(authToken);
+
     axios
-      .get(`http://192.168.0.53:9091/api/v1/news/${id}`)
+      .get(
+        `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+          apiConfig.apiRootUrl
+        }/news/${id}`,
+      )
       .then(resp => {
         // headerImage
         const { title, preview, content, newsImages } = resp.data.news;
@@ -72,16 +84,26 @@ class EditNewsPage extends Component {
     e.preventDefault();
     const { title, preview, content } = this.state;
 
-    const { match } = this.props;
+    const { match, authToken } = this.props;
 
     const { id } = match.params;
 
     axios
-      .post(`http://192.168.0.53:9091/api/v1/news/update/${id}`, {
-        title,
-        preview,
-        content,
-      })
+      .post(
+        `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+          apiConfig.apiRootUrl
+        }/news/update/${id}`,
+        {
+          title,
+          preview,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        },
+      )
       .catch(error => {
         /* eslint-disable-next-line */
         console.log(error.response.data);
@@ -93,14 +115,22 @@ class EditNewsPage extends Component {
 
   handleDeleteOneImage = id => {
     axios
-      .delete(`http://192.168.0.53:9091/api/v1/image/delete/${id}`)
+      .delete(
+        `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+          apiConfig.apiRootUrl
+        }/image/delete/${id}`,
+      )
       .then(() => {
         const { match } = this.props;
 
         this.setState({ isLoading: true });
 
         axios
-          .get(`http://192.168.0.53:9091/api/v1/news/${match.params.id}`)
+          .get(
+            `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+              apiConfig.apiRootUrl
+            }/news/${match.params.id}`,
+          )
           .then(res => {
             const { title, preview, content, newsImages } = res.data.news;
             return this.setState({
@@ -131,7 +161,7 @@ class EditNewsPage extends Component {
     e.preventDefault();
     const { imagesArray, titleImageNew /* titleImage */ } = this.state;
     const formData = new FormData();
-    const { match } = this.props;
+    const { match, authToken } = this.props;
 
     const { id } = match.params;
 
@@ -150,16 +180,26 @@ class EditNewsPage extends Component {
 
     this.setState({ isLoading: true });
 
-    fetch(`http://192.168.0.53:9091/api/v1/image/update/${id}`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Expect: '100-continue',
+    fetch(
+      `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+        apiConfig.apiRootUrl
+      }/image/update/${id}`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Expect: '100-continue',
+          Authorization: `Bearer ${authToken}`,
+        },
       },
-    })
+    )
       .then(() => {
         axios
-          .get(`http://192.168.0.53:9091/api/v1/news/${match.params.id}`)
+          .get(
+            `${apiConfig.proptocol}://${apiConfig.ip}:${apiConfig.port}/${
+              apiConfig.apiRootUrl
+            }/news/${match.params.id}`,
+          )
           .then(res => {
             const { title, preview, content, newsImages } = res.data.news;
             // const titleImage2 = newsImages.filter(curr => curr.headerImage)[0];
@@ -351,4 +391,8 @@ class EditNewsPage extends Component {
   }
 }
 
-export default EditNewsPage;
+const mstp = state => ({
+  authToken: state.session.authToken,
+});
+
+export default connect(mstp)(EditNewsPage);

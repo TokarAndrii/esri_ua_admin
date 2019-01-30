@@ -1,5 +1,5 @@
-import newsActionsTypes from './newsActionsTypes';
-import carouselActionsTypes from './carouselActionsTypes';
+import newsActionsTypes from '../types/newsActionsTypes';
+import carouselActionsTypes from '../types/carouselActionsTypes';
 
 const loadingReducer = (state = true, { type }) => {
   switch (type) {

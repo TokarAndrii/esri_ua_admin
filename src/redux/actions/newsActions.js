@@ -1,4 +1,4 @@
-import newsActionsTypes from './newsActionsTypes';
+import newsActionsTypes from '../types/newsActionsTypes';
 
 const FETCH_START = () => ({
   type: newsActionsTypes.FETCH_START,

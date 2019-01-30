@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
-import newsOperations from '../../redux/newsOperations';
+import newsOperations from '../../redux/operations/newsOperations';
 import styles from './NewsForm.module.css';
 
 const INITIAL_STATE = {

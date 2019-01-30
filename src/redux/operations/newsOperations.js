@@ -1,13 +1,20 @@
 import axios from 'axios';
 import qs from 'qs';
-import newsActions from './newsActions';
-import newsApiServices from '../services/newsServicesApi';
+import newsActions from '../actions/newsActions';
+import newsApiServices from '../../services/newsServicesApi';
+import config from '../../config';
 
 const fetchNewsList = () => dispatch => {
   dispatch(newsActions.FETCH_START());
-  axios.get('http://192.168.0.53:9091/api/v1/news/all/').then(resp => {
-    dispatch(newsActions.FETCH_SUCCESS_NEWS_LIST(resp.data.data));
-  });
+  axios
+    .get(
+      `${config.proptocol}://${config.ip}:${config.port}/${
+        config.apiRootUrl
+      }/news/all/`,
+    )
+    .then(resp => {
+      dispatch(newsActions.FETCH_SUCCESS_NEWS_LIST(resp.data.data));
+    });
 };
 
 const addNews = (title, preview, content) => dispatch => {
@@ -20,20 +27,32 @@ const addNews = (title, preview, content) => dispatch => {
   // .catch(error => dispatch(actions.fetchError(error)));
 };
 
-const addNewsAndImages = (title, preview, content, formData) => dispatch => {
+const addNewsAndImages = (title, preview, content, formData) => (
+  dispatch,
+  getState,
+) => {
   axios
     .post(
-      `http://192.168.0.53:9091/api/v1/news/create/`,
+      `${config.proptocol}://${config.ip}:${config.port}/${
+        config.apiRootUrl
+      }/news/create/`,
       qs.stringify({ title, preview, content }),
+      { headers: { Authorization: `Bearer ${getState().session.authToken}` } },
     )
     .then(resp => {
-      fetch(`http://192.168.0.53:9091/api/v1/image/upload/${resp.data.id}`, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Expect: '100-continue',
+      fetch(
+        `${config.proptocol}://${config.ip}:${config.port}/${
+          config.apiRootUrl
+        }/image/upload/${resp.data.id}`,
+        {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Expect: '100-continue',
+            Authorization: `Bearer ${getState().session.authToken}`,
+          },
         },
-      }).then(responce => {
+      ).then(responce => {
         dispatch(newsActions.FETCH_ADD_SUCCESS_NEWS_LIST_ITEM(responce));
       });
     });

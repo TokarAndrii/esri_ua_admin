@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
-import carouselOperations from '../../redux/carouselImagesOperations';
+import carouselOperations from '../../redux/operations/carouselImagesOperations';
 import styles from './UploadImageForm.module.css';
 import sendIcon from './send.png';
 

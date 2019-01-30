@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import authOperations from '../../redux/operations/authOperations';
 
+import PrivateRoute from '../privateRoute/PrivateRoute';
 import AddNewsPage from '../../pages/addNewsPage/AddNewsPage';
 import HomePage from '../../pages/home/HomePage';
 import EditNewsPage from '../../pages/editNews/EditNewsPage';
@@ -14,54 +16,66 @@ import homeIcon from './home2.png';
 import styles from './App.module.css';
 
 class App extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const { refreshCurrentUser } = this.props;
+    refreshCurrentUser();
+  }
 
   render() {
-    const { location } = this.props;
+    const { location, isAuthenticated } = this.props;
     return (
       <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <h2>Wellcome to Admin page ESRI.UA</h2>
+        {isAuthenticated && (
+          <header className={styles.appHeader}>
+            <h2>Wellcome to Admin page ESRI.UA</h2>
 
-          <div className={styles.headerMenuHolder}>
-            <div className={styles.headerMenu}>
-              <Link
-                to="/carousel-images"
-                className={styles.carouselMenuPageLinkHolder}
-              >
-                <img
-                  src={carouselMenuIcon}
-                  alt="carousel_menu_icon"
-                  className={styles.addNewsPageLinkIcon}
-                />
-                <span className={styles.addNewstext}> Carousel Images</span>
-              </Link>
+            <div className={styles.headerMenuHolder}>
+              <div className={styles.headerMenu}>
+                <Link
+                  to="/carousel-images"
+                  className={styles.carouselMenuPageLinkHolder}
+                >
+                  <img
+                    src={carouselMenuIcon}
+                    alt="carousel_menu_icon"
+                    className={styles.addNewsPageLinkIcon}
+                  />
+                  <span className={styles.addNewstext}> Carousel Images</span>
+                </Link>
+              </div>
+              {location.pathname === '/' && (
+                <Link to="/add-news" className={styles.addNewsPageLinkHolder}>
+                  <img
+                    src="./add.png"
+                    alt="add_news_icon"
+                    className={styles.addNewsPageLinkIcon}
+                  />
+                  <span className={styles.addNewstext}>Add News</span>
+                </Link>
+              )}
+
+              {location.pathname !== '/' && (
+                <Link to="/" className={styles.addNewsPageLinkHolder}>
+                  <img
+                    src={homeIcon}
+                    alt="add_news_icon"
+                    className={styles.addNewsPageLinkIcon}
+                  />
+                  <span className={styles.addNewstext}>Home</span>
+                </Link>
+              )}
             </div>
-            {location.pathname === '/' && (
-              <Link to="/add-news" className={styles.addNewsPageLinkHolder}>
-                <img
-                  src="./add.png"
-                  alt="add_news_icon"
-                  className={styles.addNewsPageLinkIcon}
-                />
-                <span className={styles.addNewstext}>Add News</span>
-              </Link>
-            )}
+          </header>
+        )}
 
-            {location.pathname !== '/' && (
-              <Link to="/" className={styles.addNewsPageLinkHolder}>
-                <img
-                  src={homeIcon}
-                  alt="add_news_icon"
-                  className={styles.addNewsPageLinkIcon}
-                />
-                <span className={styles.addNewstext}>Home</span>
-              </Link>
-            )}
-          </div>
-        </header>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          {/* <Route exact path="/" component={HomePage} /> */}
+          <PrivateRoute
+            exact
+            path="/"
+            redirectTo="/log-in"
+            component={HomePage}
+          />
           <Route path="/add-news" component={AddNewsPage} />
           <Route exact path="/carousel-images" component={CarouselMenupage} />
           <Route
@@ -78,6 +92,14 @@ class App extends Component {
 
 const mstp = state => ({
   isLoading: state.isLoading,
+  isAuthenticated: state.session.isAuthenticated,
 });
 
-export default connect(mstp)(App);
+const mdtp = {
+  refreshCurrentUser: authOperations.refreshCurrentUser,
+};
+
+export default connect(
+  mstp,
+  mdtp,
+)(App);

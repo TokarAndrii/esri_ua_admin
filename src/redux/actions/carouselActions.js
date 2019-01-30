@@ -1,4 +1,4 @@
-import carouselActionsTypes from './carouselActionsTypes';
+import carouselActionsTypes from '../types/carouselActionsTypes';
 
 const FETCH_START = () => ({
   type: carouselActionsTypes.FETCH_START,

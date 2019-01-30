@@ -23,7 +23,7 @@ const PrivateRoute = ({
 );
 
 const mstp = state => ({
-  isAuthenticated: state.isAuthenticated,
+  isAuthenticated: state.session.isAuthenticated,
 });
 
 export default connect(mstp)(PrivateRoute);

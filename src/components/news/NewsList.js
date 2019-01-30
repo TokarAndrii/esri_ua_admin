@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import NewsTable from '../newsTable/NewsTable';
-import newsOperations from '../../redux/newsOperations';
+import newsOperations from '../../redux/operations/newsOperations';
 import styles from './NewsList.module.css';
 
 class NewsList extends Component {

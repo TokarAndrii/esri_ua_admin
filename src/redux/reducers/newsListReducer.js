@@ -1,4 +1,4 @@
-import newsActionsTypes from './newsActionsTypes';
+import newsActionsTypes from '../types/newsActionsTypes';
 
 const menuListReducer = (state = [], { type, payload }) => {
   switch (type) {

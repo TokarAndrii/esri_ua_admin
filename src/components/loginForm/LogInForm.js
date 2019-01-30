@@ -15,11 +15,21 @@ class LogInForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { onSubmit } = this.props;
+    const { onLogIn } = this.props;
 
-    onSubmit({ ...this.state });
+    const { password, login } = this.state;
+
+    const credentials = { password, login };
+
+    onLogIn(credentials);
 
     this.setState({ ...INITIAL_STATE });
+
+    const { history } = this.props;
+
+    history.push({
+      pathname: '/',
+    });
   };
 
   render() {
