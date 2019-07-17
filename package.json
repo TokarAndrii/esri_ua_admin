@@ -1,12 +1,16 @@
 {
   "name": "esri_ua_admin-own",
+  "start_url": ".",
+  "homepage": "http://admin.esri.ua",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "qs": "^6.6.0",
     "react": "^16.7.0",
+    "react-contenteditable": "^3.2.6",
     "react-dom": "^16.7.0",
+    "react-icons": "^3.5.0",
     "react-loader-spinner": "^2.3.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
@@ -14,7 +18,8 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sanitize-html": "^1.20.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -63,3 +63,14 @@
 .addNewsPageLinkIcon {
   margin: 8px;
 }
+
+.logOutBtn {
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  width: 120px;
+}

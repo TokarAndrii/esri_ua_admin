@@ -1,6 +1,6 @@
-const ip = '192.168.0.15';
-const port = 9091;
-const apiRootUrl = 'api/v1';
+const ip = '193.169.189.239';
+const port = 8080;
+const apiRootUrl = 'esrisite';
 const proptocol = 'http';
 
 export default { ip, port, apiRootUrl, proptocol };

@@ -9,6 +9,7 @@ const setAuthHeader = token => {
 };
 
 const logIn = credentials => dispatch => {
+  dispatch(authActions.LOG_OUT_REQUEST_SUCCESS());
   dispatch(authActions.AUTH_REQUEST_START());
 
   const axiosConfig = {
@@ -56,7 +57,19 @@ const refreshCurrentUser = () => (dispatch, getState) => {
       /* eslint-disable-next-line */
       console.log(resp, ' - resp at refreshCurrentUser ');
       dispatch(authActions.REFRESH_CURRENT_USER_SUCCESS());
+    })
+    .catch(err => {
+      if (err.response) {
+        /* eslint-disable-next-line */
+        console.log(err, ' -err at refreshCurrentUser');
+        // TO DO auth action for log-in error
+        dispatch(authActions.LOG_OUT_REQUEST_SUCCESS());
+      }
     });
 };
 
-export default { logIn, refreshCurrentUser };
+const logOut = () => dispatch => {
+  dispatch(authActions.LOG_OUT_REQUEST_SUCCESS());
+};
+
+export default { logIn, refreshCurrentUser, logOut };

@@ -10,6 +10,16 @@
   text-align: center;
 }
 
+.editable {
+  margin-left: 100px;
+  padding: 8px;
+  margin-top: 0;
+  border: 1px solid #939393;
+  max-width: 80vw;
+  min-height: 200px;
+  width: 1900px;
+}
+
 .input {
   display: inline-block;
   margin-left: 200px;
@@ -152,4 +162,64 @@
   color: red;
   padding: 32px;
   font-weight: bold;
+}
+
+.toolBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80vw;
+  padding: 12px;
+  height: 100px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+}
+
+.btn2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 150px;
+  height: 40px;
+  margin-left: 12px;
+}
+
+.linkInput {
+  padding: 8px;
+  height: 20px;
+  width: 300px;
+  margin-left: 4px;
+}
+
+.btn:hover {
+  background: grey;
+}
+
+.label {
+  margin-left: 12px;
+  font-weight: bold;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.select {
+  padding: 8px;
+  margin-left: 4px;
+  width: 170px;
+  font-size: 18px;
+  text-align: center;
 }

@@ -14,6 +14,7 @@ import CarouselUploadImagePage from '../../pages/carouselUploadImagePage/Carouse
 import carouselMenuIcon from './carouselMenu.png';
 import homeIcon from './home2.png';
 import styles from './App.module.css';
+import logout from './log-out.png';
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const { location, isAuthenticated } = this.props;
+    const { location, isAuthenticated, handleLogOut } = this.props;
     return (
       <div className={styles.app}>
         {isAuthenticated && (
@@ -43,6 +44,7 @@ class App extends Component {
                   <span className={styles.addNewstext}> Carousel Images</span>
                 </Link>
               </div>
+
               {location.pathname === '/' && (
                 <Link to="/add-news" className={styles.addNewsPageLinkHolder}>
                   <img
@@ -65,6 +67,14 @@ class App extends Component {
                 </Link>
               )}
             </div>
+            <button
+              type="button"
+              onClick={handleLogOut}
+              className={styles.logOutBtn}
+            >
+              <img src={logout} alt="logout" />
+              Log Out
+            </button>
           </header>
         )}
 
@@ -76,12 +86,29 @@ class App extends Component {
             redirectTo="/log-in"
             component={HomePage}
           />
-          <Route path="/add-news" component={AddNewsPage} />
-          <Route exact path="/carousel-images" component={CarouselMenupage} />
-          <Route
+          <PrivateRoute
+            path="/add-news"
+            redirectTo="/log-in"
+            component={AddNewsPage}
+          />
+          {/* <Route path="/add-news" component={AddNewsPage} /> */}
+          <PrivateRoute
+            exact
+            path="/carousel-images"
+            redirectTo="/log-in"
+            component={CarouselMenupage}
+          />
+          {/* <Route exact path="/carousel-images" component={CarouselMenupage} /> */}
+          <PrivateRoute
+            exact
             path="/carousel-images/upload"
+            redirectTo="/log-in"
             component={CarouselUploadImagePage}
           />
+          {/* <Route
+            path="/carousel-images/upload"
+            component={CarouselUploadImagePage}
+          /> */}
           <Route path="/edit-news/:id" component={EditNewsPage} />
           <Route path="/log-in" component={LogInPage} />
         </Switch>
@@ -97,6 +124,7 @@ const mstp = state => ({
 
 const mdtp = {
   refreshCurrentUser: authOperations.refreshCurrentUser,
+  handleLogOut: authOperations.logOut,
 };
 
 export default connect(
